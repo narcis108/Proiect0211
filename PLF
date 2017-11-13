@@ -1,0 +1,30 @@
+desktop(asus,intel,4,2.5,[500,albastru,500]).
+desktop(acer,intel,8,2.2,[350,verde,1000]).
+desktop(lenovo,amd,4,2.6,[800,rosu,750]).
+desktop(dell,intel,16,3.2,[200,albastru,250]).
+desktop(hp,qualcomm,2,1.8,[150,negru,120]).
+
+afiseazaDesktop(Producator,Procesor,MemorieRam) :-
+    write('Producator = '),write(Producator),nl,
+    write('Procesor = '),write(Procesor),nl,
+    write('Capacitate memorie RAM = '),write(MemorieRam),nl.
+
+cautaMemorieRam(RAM) :-
+    desktop(Producator,Procesor,MemorieRam,FrecventaProcesor,Caracteristici),
+    MemorieRam < RAM,
+    afiseazaDesktop(Producator,Procesor,MemorieRam).
+    
+cautaProducator(NumeProducator) :-
+    desktop(Producator,Procesor,MemorieRam,FrecventaProcesor,Caracteristici),
+    Producator = NumeProducator,
+    afiseazaDesktop(Producator,Procesor,MemorieRam).
+    
+cautaInLista(Caracteristica) :-
+    desktop(Producator,Procesor,MemorieRam,FrecventaProcesor,Caracteristici),
+    cautareCaracteristica(Caracteristica,Caractarestici),
+    afiseazaDesktop(Producator,Procesor,MemorieRam).
+    
+cautareCaracteristica(Caracteristica,[Caracteristica,Coada]).
+
+cautareCaracteristica(Caracteristica,[CaracteristicaNegasita,Coada]) :-
+    cautareCaracteristica(Caracteristica,Coada).   
